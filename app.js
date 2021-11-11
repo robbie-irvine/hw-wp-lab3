@@ -4,8 +4,9 @@ const express = require("express");
 const app = express();
 
 //send an HTTP response when recieving HTTP GET /
+app.use(express.static("public"));
 app.get("/", (req, res) => {
-  res.send("Hello, your server is up and running");
+  res.sendFile("public/index.html", { root: __dirname });
 });
 
 //make the app listen on port
