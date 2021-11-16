@@ -1,2 +1,2 @@
 # hw-wp-lab3
-Created with CodeSandbox
+My third lab coursework for Web Programming at Heriot-Watt University
