@@ -4,6 +4,8 @@ const clientController = require("../controllers/clientController");
 
 //define a router and create routes
 const router = express.Router();
+//parses POST request
+router.use(express.urlencoded({ extended: true }));
 
 //routes for dynamic processing of products
 //-----------------------------------------------

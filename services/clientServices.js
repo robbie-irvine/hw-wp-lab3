@@ -8,7 +8,7 @@ const loginService = (typedUsername, typedPassword, callback) => {
     if (err) {
       throw err;
     }
-    if (rows.length == 0) {
+    if (rows.length === 0) {
       //the user is not in the DB
       console.log("Unkown client, Please click to register");
       callback(null, false, null);
@@ -59,7 +59,7 @@ const registerService = (client, callback) => {
     if (err) {
       throw err;
     }
-    if (rows.length == 0) {
+    if (rows.length === 0) {
       //the user is not in the DB
       console.log("New client, try insert");
       //insert user in the DB
@@ -68,7 +68,7 @@ const registerService = (client, callback) => {
           throw err2;
         }
         console.log(`Insertion  from DAO : ${affectedRows}, ${insertId}`);
-        if (affectedRows != 0) {
+        if (affectedRows !== 0) {
           console.log(`new client ${insertId}, ${client.username}`);
           callback(null, false, insertId);
         } else {
