@@ -1,0 +1,10 @@
+<%- include('header'); -%>
+<div class="content">
+  <h1><%= product.name %></h1>
+  <h2><%= product.price %> AED <span style="font-weight: normal">
+    (plus <%= product.vat %> AED VAT)</span></h2>
+  <h3><%= product.category %>, <%= product.stock %> in stock, 
+    <%= product.critical_stock %> critical stock</h3>
+  <a href="/api/catalog"><button>Back to Catalog</button></a>
+</div>
+<%- include('footer'); -%>
