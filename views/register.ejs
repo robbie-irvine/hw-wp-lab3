@@ -1,4 +1,5 @@
 <%- include('header'); -%>
+<div class="content">
 <form action="/api/register" method="POST">
   <label for="username">Username:</label></br>
   <input type="username" name="username"><br>
@@ -19,8 +20,9 @@
   <label for="fax">Fax No.:</label></br>
   <input type="text" name="fax"><br>
   <label for="max_oustanding">Max Outstanding:</label></br>
-  <input type="text" name="max_oustanding"><br>
+  <input type="number" name="max_outstanding"><br>
 
   <br><input type="submit" value="Register">
 </form>
+</div>
 <%- include('footer'); -%>

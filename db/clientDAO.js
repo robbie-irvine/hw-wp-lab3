@@ -20,6 +20,17 @@ function findByUsername(username, callback) {
   });
 }
 
+function findByNumclient(num_client, callback) {
+  const selectClient = `SELECT * from account where num_client like '${num_client}';`;
+  database.getResult(selectClient, function (err, rows) {
+    if (!err) {
+      callback(null, rows);
+    } else {
+      console.log(err);
+    }
+  });
+}
+
 function cryptPassword(pass, callback) {
   //set the complexity of the salt generation
   const saltRounds = 10;
@@ -79,7 +90,7 @@ module.exports = {
   find,
   findByUsername,
   //findBySociety,
-  //findByNumclient,
+  findByNumclient,
   createClient
   //deleteClient,
   //createInitialAccounts

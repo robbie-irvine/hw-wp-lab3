@@ -10,6 +10,10 @@ app.get("/", (req, res) => {
   res.render("index"); //no need for ejs extension
 });
 
+const session = require("express-session");
+
+app.use(session({ secret: "some secret code" }));
+
 //route for contacts
 app.get("/contacts", (req, res) => {
   res.render("contacts");

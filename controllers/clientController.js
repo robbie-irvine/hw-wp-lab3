@@ -8,7 +8,9 @@ const loginControl = (request, response) => {
     response.end();
   } else {
     if (request.session && request.session.user) {
-      response.send("Already logged in");
+      response.render("registerResult", {
+        regtext: `Already logged in`
+      });
       response.end();
     } else {
       clientServices.loginService(username, password, function (
@@ -19,18 +21,22 @@ const loginControl = (request, response) => {
         console.log("Client from login service :" + JSON.stringify(client));
         if (client === null) {
           console.log("Auhtentication problem!");
-          response.send("login failed"); //invite to register
-          response.end();
+          response.render("registerResult", {
+            regtext: `Username or password incorrect`
+          });
         } else {
           console.log("User from login service :" + client[0].num_client);
           //add to session
           request.session.user = username;
           request.session.num_client = client[0].num_client;
           request.session.admin = false;
-          response.send(
+          /*response.send(
             `Login (${username}, ID.${client[0].num_client}) successful!`
           );
-          response.end();
+          response.end();*/
+          response.render("registerResult", {
+            regtext: `Login (${username}, ID.${client[0].num_client}) successful!`
+          });
         }
       });
     }
@@ -39,9 +45,10 @@ const loginControl = (request, response) => {
 
 const registerControl = (request, response) => {
   const clientServices = require("../services/clientServices");
+  const { Client } = require("../models/entities");
 
   let username = request.body.username;
-  let password = request.body.passwsord;
+  let password = request.body.password;
   let society = request.body.society;
   let contact = request.body.contact;
   let addres = request.body.addres;
@@ -68,15 +75,15 @@ const registerControl = (request, response) => {
     console.log("User from register service :" + insertedID);
     if (exists) {
       console.log("Username taken!");
-      response.send(
-        `registration failed. Username (${username}) already taken!`
-      ); //invite to register
+      response.render("registerResult", {
+        regtext: `Registration failed. Username (${username}) already taken!`
+      });
     } else {
       client.num_client = insertedID;
       console.log(`Registration (${username}, ${insertedID}) successful!`);
-      response.send(
-        `Successful registration ${client.contact} (ID.${client.num_client})!`
-      );
+      response.render("registerResult", {
+        regtext: `Successful registration ${client.contact} (ID.${client.num_client})!`
+      });
     }
     response.end();
   });
