@@ -1,0 +1,40 @@
+<%- include('header'); -%>
+    <div class="content">
+      <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th scope="col">Reference</th>
+                <th scope="col">Price (inc. VAT)</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <% let grandTotal = 0;
+        items.forEach(item => {%>
+          <tbody>
+              <td scope="row">
+                  <%= item.name %>
+              </td>
+              <td>
+                  <%= item.reference %>
+              </td>
+              <td>
+                  <%= item.price + item.vat %> AED
+              </td>
+              <td>
+                  <%= item.quantity %>
+              </td>
+              <td>
+                  <%= (item.price + item.vat) * item.quantity %> AED
+              </td>
+          </tbody>
+        <% grandTotal += (item.price + item.vat) * item.quantity }); %>
+        <tbody>
+          <th scope="row">Grand Total:</th>
+          <td></td> <td></td> <td></td>
+          <td><%= grandTotal %> AED</td>
+        </tbody>
+      </table>
+    </div>
+<%- include('footer'); -%>

@@ -33,6 +33,11 @@ app.get("/login", (req, res) => {
 const router = require("./apis/routes");
 app.use(router);
 
+/*//route for cart
+app.get("/api/cart", (req, res) => {
+  res.render("cart");
+});*/
+
 //make the app listen on port
 const port = process.argv[2] || process.env.PORT || 3000;
 const server = app.listen(port, () => {

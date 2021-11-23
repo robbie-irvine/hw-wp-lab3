@@ -13,6 +13,16 @@ router.use(express.urlencoded({ extended: true }));
 router.get("/api/catalog", productController.getCatalogue);
 router.get("/api/article/:id", productController.getProductByID);
 
+//route for showing cart
+/*router.get("/api/cart", function (req, res) {
+  let cart = req.session.cart;
+  const searchCart = productController.searchCart;
+  res.render("cart", { cart: cart, searchCart: searchCart });
+});*/
+router.get("/api/cart", productController.searchCart);
+//route for adding products to cart
+router.post("/api/cart", productController.addToCart);
+
 //routes for dynamic processing of clients
 //-----------------------------------------------
 //route for registration

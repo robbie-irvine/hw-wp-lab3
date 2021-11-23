@@ -5,7 +5,7 @@ const searchService = function (callback) {
       throw err;
     }
     if (rows.length === 0) {
-      console.log("No products!");
+      console.log("No products");
     } else {
       callback(null, rows);
     }
